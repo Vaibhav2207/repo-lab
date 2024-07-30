@@ -1,30 +1,22 @@
 pipeline {
 agent any
 stages {
-  stage('Checkout') {
-    steps {
-// Checkout code from the Git repository
-     sh 'echo checking out'
+  stage('SCM code') {
+   steps {
+    git 'https://github.com/hellokaton/java11-examples.git'
    }
   }
-stage('Build') {
+ stage('Build') {
   steps {
-// Build the Java application (replace with your build commands)
-  sh 'javac -version'
+   sh 'mvn clean package'
+  }
  }
-}
-stage('Deploy') {
+ stage('Publish') {
   steps {
-  // Deploy the application (replace with your deployment commands)
-   sh 'echo "Deploying the application"'
-   }
+  // Add steps to publish artifacts or deploy the application
+  // For example, you can use the 'archiveArtifacts' step to archive built artifacts
+  archiveArtifacts 'target/*.jar'
+     }
   }
- 
-stage('Input'){
-steps {
-                // Wait for human input to proceed
-                input message: 'Do you want to proceed?', ok: 'Proceed'
-            }
-}
 }
 }

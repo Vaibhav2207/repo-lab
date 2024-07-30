@@ -19,5 +19,8 @@ stage('Deploy') {
    sh 'echo "Deploying the application"'
    }
   }
- }
+ 
+stage('Input'){
+input 'Do you want to proceed?'
+}
 }

@@ -21,7 +21,10 @@ stage('Deploy') {
   }
  
 stage('Input'){
-input 'Do you want to proceed?'
+steps {
+                // Wait for human input to proceed
+                input message: 'Do you want to proceed?', ok: 'Proceed'
+            }
 }
 }
 }
